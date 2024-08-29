@@ -1,15 +1,28 @@
 # Observations 
 <table> 
 <tr>
-<th> 1 </th>
-<th> 2 </th>
-<th> 3 </th>
+<th> Functinality </th>
+<th> Continious Signals </th>
+<th> Discrete Signals </th>
 </tr>
 <tr>
-<td> 1 </td>
+<td> Convolution </td>
+<td> When Dealing with Continous functions, `scipy.signal` </td>
+<td> 3 </td>
+</tr>
+<tr>
+<td> Plotting </td>
 <td> 2 </td>
 <td> 3 </td>
-<td> 4 </td>
-<td> 5 </td>
+</tr>
+<tr>
+<td> Time Shifting </td>
+<td> 2 </td>
+<td> 3 </td>
+</tr>
+<tr>
+<td> Intergration </td>
+<td> 2 </td>
+<td> 3 </td>
 </tr>
 </table
