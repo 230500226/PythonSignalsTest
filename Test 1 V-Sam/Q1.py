@@ -2,6 +2,17 @@ import sympy as sm
 from scipy.integrate import quad 
 t = sm.Symbol('t')
 u = sm.Heaviside
+
+# User input the function x
+import sympy as sm
+
+def get_piecewise_function():
+    t = sm.Symbol('t')
+    pieces = []
+import sympy as sm
+from scipy.integrate import quad 
+t = sm.Symbol('t')
+u = sm.Heaviside
 x = (t+6)*(u(t+6)-u(t+3)) + 3*(u(t+3)- u(t+1)) + (-t+2)*(u(t+1)- u(t)) + 2*(u(t) - u(t-2)) + (-t+4)*(u(t-2) - u(t-4))
 y = 2*x.subs(t, (3-t)) # Does the time shifting transformarion
 data = sm.lambdify(t, y, 'numpy') # Changes the format function from sympy to an array that is understood by the scipy library to better deal with intergrals
