@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sympy import symbols, lambdify
 import re
 
 # Ask the user to input the indices and corresponding values for the function x(t)
@@ -43,6 +42,18 @@ if shift_op and shift_n:
         t = t + float(shift_n)
     else:
         t = t - float(shift_n)
+
+# Ask the user to input an amplitude scaling factor
+amp_scale = float(input("Enter an amplitude scaling factor: "))
+
+# Apply amplitude scaling
+x_t = amp_scale * x_t
+
+# Ask the user to input an amplitude shifting value
+amp_shift = float(input("Enter an amplitude shifting value: "))
+
+# Apply amplitude shifting
+x_t = x_t + amp_shift
 
 # Print the function values at the indices after transformation
 print("Function values at the indices after transformation:")
