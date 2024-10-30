@@ -11,8 +11,8 @@ n = int(input("Enter the n value: "))
 hx_min = int(input("Enter the minimum value of x: ")) + n
 hx_max = int(input("Enter the maximum value of x: ")) + n
 
-min = fx_min if fx_min < hx_min else hx_min
-max = fx_max if fx_max > hx_max else hx_max
+min_val = min(fx_min, hx_min - n)
+max_val = max(fx_max, hx_max - n)
 
 # Step 3: Initialize empty dictionaries to store function values for f and h
 f_values = {}
@@ -41,28 +41,31 @@ for key, value in h_values.items():
 
 print(f"The range of fx is: [{fx_min}, {fx_max}]")
 
-# Step 7: Calculate the sum of f(k-1) * h(k)
-sum_result = 0
-h = list(h_values.values())
-h = h[::-1]
+# Step 7: Calculate the sum of f(k) * h(k)
+length = max_val - min_val + 1
 
-def shiftH(h):
-    if (n < 0):
-        h = [0] * (abs(n)) + h
-        h = [0] * (max - min - len(h)-1) + h
+def shiftH(h, n, length):
+    if n > 0:
+        h = [0] * n + h
     else:
-        h = [0] * abs(n) +  h
-        h = h + [0] * (max - min -len(h)-1)
-    return h
+        h = h + [0] * abs(n)
+    return h[:length]
 
-h = shiftH(h)
+# Prepare f and h arrays
+f = [f_values.get(i, 0) for i in range(min_val, max_val + 1)]
+h = [h_values.get(i, 0) for i in range(min_val, max_val + 1)]
+h = shiftH(h[::-1], n, length)  # Fixing the direction of shift
 
-f = list(f_values.values())
-print((f))
-print((h))
+print("Array f:", f)
+print("Array h:", h)
 
-for k in range(len(f)):
-    sum_result += f[k] * h[k]
+# Ensure both arrays are of equal length
+if len(f) != len(h):
+    max_len = max(len(f), len(h))
+    f.extend([0] * (max_len - len(f)))
+    h.extend([0] * (max_len - len(h)))
+
+sum_result = sum(f[k] * h[k] for k in range(len(f)))
 
 # Step 8: Display the sum
-print(f"The sum of f(k-1) * h(k) from k={min + 1} to k={max} is: {sum_result}")
+print(f"The sum of f(k) * h(k) from k={min_val} to k={max_val} is: {sum_result}")
